@@ -1,5 +1,9 @@
-import styles from "../../../../page.module.css";
+import LoginModal from "@/app/(beforeLogin)/_component/LoginModal";
 
-export default function Home() {
-  return <main className="">로그인 모달</main>;
+export default function Page() {
+  return (
+    <main>
+      <LoginModal></LoginModal>
+    </main>
+  );
 }

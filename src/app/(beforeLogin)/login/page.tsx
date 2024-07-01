@@ -1,5 +1,10 @@
-import { redirect } from "next/navigation";
+"use client";
+import { useRouter } from "next/navigation";
+import Main from "../_component/Main";
+// 인터셉팅 라우터는 클라이언트에서만 이루어진다.
 
 export default function Login() {
-  redirect('/i/flow/login')
+  const router = useRouter();
+  router.replace("/i/flow/login");
+  return <Main />;
 }
