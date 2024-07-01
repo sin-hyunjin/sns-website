@@ -1,17 +1,16 @@
 "use client";
 
-import style from "@/app/(beforeLogin)/@modal/login.module.css";
+import style from "@/app/(beforeLogin)/@modal/(.)i/flow/login/login.module.css";
 import { useState } from "react";
 
+/** interceping router : i/flow/login 주소를 (.)i/flow/login이 낚아챈다.*/
 export default function LoginModal() {
   const [id, setId] = useState();
   const [password, setPassword] = useState();
   const [message, setMessage] = useState();
   const onSubmit = () => {};
   const onClickClose = () => {};
-
   const onChangeId = () => {};
-
   const onChangePassword = () => {};
 
   return (

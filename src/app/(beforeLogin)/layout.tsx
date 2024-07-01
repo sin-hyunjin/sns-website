@@ -9,12 +9,14 @@ type Props = {
 export default async function BeforeLoginLayout({ children, modal }: Props) {
   return (
     <div className={styles.container}>
-      로그인 후 레이아웃
+      로그인 전 레이아웃
       {children}
       {modal}
     </div>
   );
 }
+// ? 주소가 localhost:3001일 떄는 children -> page.tsx, modal -> @modal/default.tsx
+// ? 주소가 localhost:3001/i/flow/login 때는 chldren->i/flow/login/page.tsx, modal->@modal/i/flow/login/page.tsx
 
 /* 계층 구조
  * RootLayout -> HomeLayout -> HomePage 순으로 형성이 되어있다.
