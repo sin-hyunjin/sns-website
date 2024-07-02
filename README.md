@@ -32,4 +32,46 @@ Inlay Hints : Enabled -> onUnlessPressed로 변경
 
 
 
-#### dayjs vs moment
+## 라이브러리 (npm trands에서 비교 )
+
+#### dayjs 
+
+Day.js 
+
+사용예제:
+
+```javascript
+import dayjs from 'dayjs';
+
+// 현재 날짜와 시간
+console.log(dayjs().format());
+
+// 날짜 더하기
+console.log(dayjs().add(1, 'day').format());
+
+// 날짜 비교
+console.log(dayjs().isBefore(dayjs().add(1, 'day')));
+
+```
+
+- **모던 API**: Moment.js와 비슷한 API를 제공하면서도 더 현대적인 방식으로 설계됨.
+
+#### classname
+
+**사용 예제**:
+
+```javascript
+import cx from 'classnames';
+
+const isActive = true;
+const buttonClass = cx('button', { 'button-active': isActive });
+
+console.log(buttonClass); // "button button-active"
+
+```
+
+- **조건부 클래스 관리**: 조건에 따라 클래스 이름을 동적으로 적용할 수 있음.
+
+- **가독성 향상**: 코드가 더 간결하고 읽기 쉬워짐.
+
+- **유연성**: 문자열, 객체, 배열 등 다양한 방식으로 클래스를 조합할 수 있음.
