@@ -26,3 +26,10 @@ npx create-next-app@latest
 - `useSelectedLayoutSegment()`: 최상위 세그먼트를 가져옴 (예: `{home}`).
 - `useSelectedLayoutSegments()`: 자식 세그먼트를 포함한 모든 세그먼트를 가져옴 (예: `{home/username}`).
 
+#### vscode 변수나 함수타입을 추론 
+
+Inlay Hints : Enabled -> onUnlessPressed로 변경
+
+
+
+#### dayjs vs moment

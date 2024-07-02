@@ -1,15 +1,15 @@
 import style from './home.module.css';
 import Tab from "@/app/(afterLogin)/home/_components/Tab";
 import TabProvider from "@/app/(afterLogin)/home/_components/TabProvider";
-import PostForm from "@/app/(afterLogin)/home/_component/PostForm";
-import Post from "@/app/(afterLogin)/_component/Post";
+import PostForm from "@/app/(afterLogin)/home/_components/PostForm";
+import Post from "@/app/(afterLogin)/_components/Post";
 
 export default function Home() {
   return (
     <main className={style.main}>
       <TabProvider>
         <Tab/>
-        {/* <PostForm />
+        <PostForm />
         <Post/>
         <Post/>
         <Post/>
@@ -21,7 +21,7 @@ export default function Home() {
         <Post/>
         <Post/>
         <Post/>
-        <Post/> */}
+        <Post/>
       </TabProvider>
     </main>
   )
