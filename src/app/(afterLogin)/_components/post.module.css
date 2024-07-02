@@ -94,6 +94,10 @@
     border-radius: 16px;
 }
 
+/*       -----------------          
+         Action Button.tsx          
+         -----------------*/ 
+         
 .actionButtons {
     display: flex;
     justify-content: space-between;

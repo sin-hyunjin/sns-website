@@ -8,7 +8,12 @@ import LogoutButton from "./_components/LogoutButton"
 import FollowRecommend from "./_components/FollwRecommend";
 import TrendSection from "./_components/TrendSection";
 
-export default function AfterLoginLayout({ children }: { children: ReactNode }) {
+type Props = {
+  children: ReactNode,
+  modal : ReactNode
+}
+ 
+export default function AfterLoginLayout({ children, modal } : Props) {
   return (
     <div className={style.container}>
 
@@ -41,7 +46,6 @@ export default function AfterLoginLayout({ children }: { children: ReactNode }) 
       {/* 오른쪽 섹션 래퍼 */}
       <div className={style.rightSectionWrapper}>
         <div className={style.rightSectionInner}>
-
           {/* 메인 콘텐츠 영역 */}
           <main className={style.main}>{children}</main>
 
@@ -71,7 +75,7 @@ export default function AfterLoginLayout({ children }: { children: ReactNode }) 
           </section>
         </div>
       </div>
-
+      {modal}
     </div>
   )
 }

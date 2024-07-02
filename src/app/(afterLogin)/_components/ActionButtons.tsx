@@ -3,16 +3,24 @@ import style from './post.module.css';
 import cx from 'classnames';
 
 export default function ActionButtons() {
-  const commented = true;
-  const reposted = true;
-  const liked = false;
+  const commented = true; // 댓글을 단 상태를 나타냄
+  const reposted = true; // 리포스트한 상태를 나타냄
+  const liked = false; // 좋아요를 누른 상태를 나타냄
 
+  // 각 버튼 클릭 시 호출되는 핸들러 함수 (현재는 빈 함수)
   const onClickComment = () => {}
   const onClickRepost = () => {}
   const onClickHeart = () => {}
 
   return (
+
+    /**
+     * 1. {1 || ''}, {0 || ''}: count 값을 표시하며, 값이 없을 경우 빈 문자열을 표시
+     * 2. cx (classnames): 클래스 이름을 조건부로 추가하는 데 사용
+     * 3. { [style.commented]: commented }: commented가 true일 때 style.commented 클래스를 추가
+     */ 
     <div className={style.actionButtons}>
+      {/* 댓글 버튼 */}
       <div className={cx(style.commentButton, { [style.commented]: commented })}>
         <button onClick={onClickComment}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
@@ -24,6 +32,8 @@ export default function ActionButtons() {
         </button>
         <div className={style.count}>{1 || ''}</div>
       </div>
+
+      {/* 리포스트 버튼 */}
       <div className={cx(style.repostButton, reposted && style.reposted)}>
         <button onClick={onClickRepost}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
@@ -35,6 +45,8 @@ export default function ActionButtons() {
         </button>
         <div className={style.count}>{1 || ''}</div>
       </div>
+
+      {/* 좋아요 버튼 */}
       <div className={cx([style.heartButton, liked && style.liked])}>
         <button onClick={onClickHeart}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
@@ -44,6 +56,7 @@ export default function ActionButtons() {
             </g>
           </svg>
         </button>
+
         <div className={style.count}>{0 || ''}</div>
       </div>
     </div>

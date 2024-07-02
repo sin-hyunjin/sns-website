@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
+import Home from "../../home/page";
 
-export default function Home({ children }: { children: ReactNode }) {
-  return <main> 컴포즈 페이지 {children}</main>;
+export default function ComposeTweet() {
+  return (<Home/>
+  )
 }

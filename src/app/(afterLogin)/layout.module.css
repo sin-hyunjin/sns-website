@@ -12,9 +12,9 @@
 }
 
 .leftSection {
-  
     width: 275px;
     height: 100dvh;
+    margin-left: 40px;
 }
 
 .leftSectionFixed {

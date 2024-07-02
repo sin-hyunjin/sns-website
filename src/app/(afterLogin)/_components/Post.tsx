@@ -45,7 +45,7 @@ export default function Post() {
           <div className={style.postImageSection}>
 
           </div>
-          {/* <ActionButtons /> */}
+          <ActionButtons />
         </div>
       </div>
     </article>
