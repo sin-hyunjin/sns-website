@@ -1,7 +1,7 @@
 .container {
     display: flex;
     align-items: stretch;
-    background-color: #fff;
+    /* background-color: #fff; */
 }
 
 .leftSectionWrapper {

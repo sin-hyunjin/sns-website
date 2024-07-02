@@ -1,5 +1,28 @@
-import { ReactNode } from "react";
+import style from './home.module.css';
+import Tab from "@/app/(afterLogin)/home/_components/Tab";
+import TabProvider from "@/app/(afterLogin)/home/_components/TabProvider";
+import PostForm from "@/app/(afterLogin)/home/_component/PostForm";
+import Post from "@/app/(afterLogin)/_component/Post";
 
-export default function Home({ children }: { children: ReactNode }) {
-  return <main> 홈 레이아웃 {children}</main>;
+export default function Home() {
+  return (
+    <main className={style.main}>
+      <TabProvider>
+        <Tab/>
+        {/* <PostForm />
+        <Post/>
+        <Post/>
+        <Post/>
+        <Post/>
+        <Post/>
+        <Post/>
+        <Post/>
+        <Post/>
+        <Post/>
+        <Post/>
+        <Post/>
+        <Post/> */}
+      </TabProvider>
+    </main>
+  )
 }
