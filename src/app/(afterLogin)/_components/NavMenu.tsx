@@ -4,14 +4,9 @@ import style from './navMenu.module.css';
 import {useSelectedLayoutSegment} from "next/navigation";
 import Link from "next/link";
 import Image from 'next/image';
-/*  이미지 파일 import  */
-import homeFilled from "../../../../public/afterLogin/home-folled.svg"
-import homeOutline from "../../../../public/afterLogin/home-outline.svg"
-import exploreFilled from "../../../../public/afterLogin/explore-filled.svg"
-import exploreOutline from "../../../../public/afterLogin/explore-outline.svg"
-import messagesFilled from "../../../../public/afterLogin/messages-filled.svg"
-import messagesOutline from "../../../../public/afterLogin/messages-outline.svg"
 
+/*  이미지 파일 import  */
+import {ExploreFilled, ExpooreOutline, HomeFilled,HomeOutline, MessagesFilled, MessagesOutline} from '@public/afterLogin'
 
 //        Components : NavMenu          //
 export default function NavMenu() {
@@ -24,31 +19,33 @@ export default function NavMenu() {
   return (
     <>
       <li>
+        {/* 홈 메뉴 항목 */}
         <Link href="/home">
           <div className={style.navPill}>
             {segment === 'home' ?
               <>
-               <Image src={homeFilled} alt='Home Filled' width={26} height={26}/>
+               <Image src={HomeFilled} alt='Home Filled' width={26} height={26}/>
                 <div style={{fontWeight: 'bold'}}>홈</div>
               </> :
               <>
-             <Image src={homeOutline}  alt='Home Outline'  width={26} height={26}/>
+             <Image src={HomeOutline}  alt='Home Outline'  width={26} height={26}/>
                 <div style={{  }}>홈</div>
               </>}
           </div>
         </Link>
       </li>
 
+      {/* 탐색하기 메뉴 항목 */}
       <li>
         <Link href="/explore">
           <div className={style.navPill}>
             {segment && (['search', 'explore'].includes(segment)) ?
               <>
-               <Image src={exploreFilled} alt='Explore Filled' width={26} height={26}/ >
+               <Image src={ExploreFilled} alt='Explore Filled' width={26} height={26}/ >
                 <div style={{fontWeight: 'bold'}}>탐색하기</div>
               </> :
               <>
-                 <Image src={exploreOutline} alt='Explore Outline' width={26} height={26}/ >
+                 <Image src={ExpooreOutline} alt='Explore Outline' width={26} height={26}/ >
                 <div style={{}}>탐색하기</div>
               </>
             }
@@ -56,22 +53,24 @@ export default function NavMenu() {
         </Link>
       </li>
       
+      {/* 쪽지 메뉴 항목 */}
       <li>
         <Link href="/messages">
           <div className={style.navPill}>
             {segment === 'messages' ?
               <>
-                <Image src={messagesFilled} alt='Messages Filled' width={26} height={26}/>
+                <Image src={MessagesFilled} alt='Messages Filled' width={26} height={26}/>
                 <div style={{fontWeight: 'bold'}}>쪽지</div>
               </> :
               <>
-                <Image src={messagesOutline} alt='Messages Outline' width={26} height={26} />
+                <Image src={MessagesOutline} alt='Messages Outline' width={26} height={26} />
                 <div style={{  }}>쪽지</div>
               </>}
           </div>
         </Link>
       </li>
-      {me?.id && <li>
+      {/* 프로필 메뉴 항목 */}
+      {me?.id && <li> 
         <Link href={`/${me?.id}`}>
           <div className={style.navPill}>
             {segment === me.id ? <>
