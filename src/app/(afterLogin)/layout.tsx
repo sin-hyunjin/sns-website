@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 import style from "@/app/(afterLogin)/layout.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import ZLogo from "public/zlogo.png";
+import ZLogo from "@public/zlogo.png";
 import NavMenu from "./_components/NavMenu";
 import LogoutButton from "./_components/LogoutButton";
-import FollowRecommend from "./_components/FollwRecommend";
+import FollowRecommend from "./_components/FollowRecommend";
 import TrendSection from "./_components/TrendSection";
 import RightSearchZone from "./_components/RightSearchZone";
 

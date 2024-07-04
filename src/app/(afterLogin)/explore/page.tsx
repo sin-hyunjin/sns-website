@@ -1,6 +1,6 @@
 import style from "./explore.module.css";
 import SearchForm from "@/app/(afterLogin)/_components/SearchForm";
-import Trend from "@/app/(afterLogin)/_components/Trend";
+import Trend from "@/app/(afterLogin)/_components/Trend/Trend";
 
 export default function Home() {
   return (

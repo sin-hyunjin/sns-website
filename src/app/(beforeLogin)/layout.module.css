@@ -1,0 +1,5 @@
+.container {
+  display: flex;
+  width: 100dvw; /* 100% 채우는 방법이다,*/
+  height: 100dvh;
+}
