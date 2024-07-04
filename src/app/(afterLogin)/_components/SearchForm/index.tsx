@@ -1,6 +1,8 @@
 import style from "./style.module.css";
 
-type Props = { q?: string };
+type Props = {
+  q?: string; // q는 옵셔널로 사용 하기위한 ?표시
+};
 export default function SearchForm({ q }: Props) {
   return (
     <form className={style.search}>

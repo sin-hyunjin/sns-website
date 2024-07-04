@@ -16,6 +16,8 @@
 }
 
 .search input {
+  flex: 1;
+  border-radius: 21px;
   outline: none;
   background-color: inherit;
   border: none;
