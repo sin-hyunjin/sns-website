@@ -2,7 +2,11 @@
 import style from "./style.module.css";
 import cx from "classnames";
 
-export default function ActionButtons() {
+type Props = {
+  white?: boolean;
+};
+
+export default function ActionButtons({ white }: Props) {
   const commented = true; // 댓글을 단 상태를 나타냄
   const reposted = true; // 리포스트한 상태를 나타냄
   const liked = false; // 좋아요를 누른 상태를 나타냄
@@ -21,7 +25,11 @@ export default function ActionButtons() {
     <div className={style.actionButtons}>
       {/* 댓글 버튼 */}
       <div
-        className={cx(style.commentButton, { [style.commented]: commented })}
+        className={cx(
+          style.commentButton,
+          { [style.commented]: commented },
+          white && style.white
+        )}
       >
         <button onClick={onClickComment}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
@@ -34,7 +42,13 @@ export default function ActionButtons() {
       </div>
 
       {/* 리포스트 버튼 */}
-      <div className={cx(style.repostButton, reposted && style.reposted)}>
+      <div
+        className={cx(
+          style.repostButton,
+          reposted && style.reposted,
+          white && style.white
+        )}
+      >
         <button onClick={onClickRepost}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>
@@ -46,7 +60,12 @@ export default function ActionButtons() {
       </div>
 
       {/* 좋아요 버튼 */}
-      <div className={cx([style.heartButton, liked && style.liked])}>
+      <div
+        className={cx(
+          [style.heartButton, liked && style.liked],
+          white && style.white
+        )}
+      >
         <button onClick={onClickHeart}>
           <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
             <g>

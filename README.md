@@ -75,3 +75,7 @@ console.log(buttonClass); // "button button-active"
 - **가독성 향상**: 코드가 더 간결하고 읽기 쉬워짐.
 
 - **유연성**: 문자열, 객체, 배열 등 다양한 방식으로 클래스를 조합할 수 있음.
+
+#### @faker-js/faker
+
+### event Capture
