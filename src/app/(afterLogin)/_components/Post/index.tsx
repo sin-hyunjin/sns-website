@@ -20,8 +20,8 @@ export default function Post({ noImage }: Props) {
   const target = {
     postId: 1,
     User: {
-      id: "elonmusk",
-      nickname: "Elon Musk",
+      id: "seungyeon",
+      nickname: "유 뚱땅 말진짜 안듣네",
       image: "/yRsRRjGO.jpg",
     },
     content: "클론코딩 라이브로 하니 너무 힘들어요 ㅠㅠ",
@@ -36,6 +36,7 @@ export default function Post({ noImage }: Props) {
       { imageId: 4, link: faker.image.urlLoremFlickr() }
     );
   }
+
   return (
     <PostArticle post={target}>
       <div className={style.postWrapper}>
@@ -59,16 +60,9 @@ export default function Post({ noImage }: Props) {
           </div>
           <div>{target.content}</div>
           <div>
-            {target.Images && target.Images.length > 0 && (
-              <Link
-                href={`/${target.User.id}/status/${target.postId}/photo/${target.Images[0].imageId}`}
-                className={style.postImageSection}
-              >
-                <img src={target.Images[0]?.link}></img>
-              </Link>
-            )}
             <PostImages post={target} />
           </div>
+
           <ActionButtons />
         </div>
       </div>
