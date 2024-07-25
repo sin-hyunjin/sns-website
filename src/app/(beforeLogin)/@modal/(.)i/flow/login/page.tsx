@@ -1,9 +1,10 @@
-import LoginModal from "@/app/(beforeLogin)/_components/LoginModal"; // 서버 컴포넌트만 클라이언트 컴포넌트를 임폴트 할 수 있다.
+import LoginModal from "@/app/(beforeLogin)/_component/LoginModal";
 
 export default function Page() {
   return (
-    <main>
+    <>
+      난 가로채기지롱 ㅋㅋ
       <LoginModal />
-    </main>
+    </>
   );
 }

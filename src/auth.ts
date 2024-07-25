@@ -1,52 +1,77 @@
-import NextAuth from "next-auth"; // NextAuth 라이브러리 import
-import CredentialsProvider from "next-auth/providers/credentials"; // CredentialsProvider를 import (사용자 인증을 위해)
-import { NextResponse } from "next/server"; // NextResponse를 import (서버 응답 처리)
+import NextAuth from "next-auth"
+import CredentialsProvider from "next-auth/providers/credentials";
+import { cookies } from 'next/headers'
+import cookie from 'cookie';
 
 export const {
-  handlers: { GET, POST }, // GET, POST 핸들러를 export
-  auth, // auth 함수 export (NextAuth의 인증 처리)
-  signIn, // signIn 함수 export (로그인 처리)
+  handlers: { GET, POST },
+  auth,
+  signIn,
 } = NextAuth({
-  // next가 직접 만든 페이지가 아닌 내가 만든 페이지로 등록
   pages: {
-    signIn: "/i/flow/login", // 로그인 페이지 경로 설정
-    newUser: "/i/flow/signup", // 회원가입 페이지 경로 설정
+    signIn: '/i/flow/login',
+    newUser: '/i/flow/signup',
   },
-
-  // 카카오나 네이버를 추가로 등록할 수 있음
+  callbacks: {
+    jwt({ token}) {
+      console.log('auth.ts jwt', token);
+      return token;
+    },
+    session({ session, newSession, user}) {
+      console.log('auth.ts session', session, newSession, user);
+      return session;
+    }
+  },
+  events: {
+    signOut(data) {
+      console.log('auth.ts events signout', 'session' in data && data.session, 'token' in data && data.token);
+      fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/logout`, {
+        method: "POST",
+        credentials: 'include'
+      })
+      // if ('session' in data) {
+      //   data.session = null;
+      // }
+      // if ('token' in data) {
+      //   data.token = null;
+      // }
+    },
+    session(data) {
+      console.log('auth.ts events session', 'session' in data && data.session, 'token' in data && data.token);
+    }
+  },
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
-        // 인증 처리 함수
-        // 로그인 API에 POST 요청을 보내고, 응답을 authResponse에 저장
-        const authResponse = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/login`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json", // 요청의 Content-Type을 JSON으로 설정
-            },
-            body: JSON.stringify({
-              id: credentials.username, // 요청 본문에 사용자 ID 추가
-              password: credentials.password, // 요청 본문에 사용자 비밀번호 추가
-            }),
-          }
-        );
-
+        const authResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: credentials.username,
+            password: credentials.password,
+          }),
+        })
+        let setCookie = authResponse.headers.get('Set-Cookie');
+        console.log('set-cookie', setCookie);
+        if (setCookie) {
+          const parsed = cookie.parse(setCookie);
+          cookies().set('connect.sid', parsed['connect.sid'], parsed); // 브라우저에 쿠키를 심어주는 것
+        }
         if (!authResponse.ok) {
-          // 응답이 성공적이지 않으면 null을 반환
-          return null;
+          return null
         }
 
-        const user = await authResponse.json(); // 응답 본문을 JSON으로 파싱하여 user에 저장
-        console.log("user", user); // user 정보 콘솔에 출력
+        const user = await authResponse.json()
+        console.log('user', user);
         return {
-          email: user.id, // 사용자의 email 정보
-          name: user.nickname, // 사용자의 이름 정보
-          image: user.image, // 사용자의 프로필 이미지 정보
-          ...user, // user 객체의 다른 정보들도 반환
-        };
+          email: user.id,
+          name: user.nickname,
+          image: user.image,
+          ...user,
+        }
       },
     }),
-  ],
+  ]
 });
