@@ -1,22 +1,44 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import style from "./style.module.css";
-import { useState } from "react";
+import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
-/** interceping router : i/flow/login 주소를 (.)i/flow/login이 낚아챈다.*/
 export default function LoginModal() {
-  const [id, setId] = useState();
-  const [password, setPassword] = useState();
-  const [message, setMessage] = useState();
-  const onSubmit = () => {};
-
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const router = useRouter();
+
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    setMessage("");
+    try {
+      console.log("로그인중");
+      const result = await signIn("credentials", {
+        username: id,
+        password,
+        redirect: false,
+      });
+      console.log(result);
+      router.replace("/home");
+    } catch (err) {
+      console.error(err);
+      setMessage("아이디와 비밀번호가 일치하지 않습니다.");
+    }
+  };
   const onClickClose = () => {
     router.back();
   };
-  const onChangeId = () => {};
-  const onChangePassword = () => {};
+
+  const onChangeId: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setId(e.target.value);
+  };
+
+  const onChangePassword: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setPassword(e.target.value);
+  };
 
   return (
     <div className={style.modalBackground}>
@@ -38,7 +60,6 @@ export default function LoginModal() {
         </div>
         <form onSubmit={onSubmit}>
           <div className={style.modalBody}>
-            {/* Input : ID */}
             <div className={style.inputDiv}>
               <label className={style.inputLabel} htmlFor="id">
                 아이디
@@ -52,7 +73,6 @@ export default function LoginModal() {
                 placeholder=""
               />
             </div>
-            {/* Input : Password */}
             <div className={style.inputDiv}>
               <label className={style.inputLabel} htmlFor="password">
                 비밀번호
@@ -67,10 +87,8 @@ export default function LoginModal() {
               />
             </div>
           </div>
-
           <div className={style.message}>{message}</div>
           <div className={style.modalFooter}>
-            {/* Login Button */}
             <button className={style.actionButton} disabled={!id && !password}>
               로그인하기
             </button>

@@ -24,7 +24,7 @@ export default function PostImages({ post }: Props) {
   if (!post.Images.length) return null;
 
   // 이미지 배열을 콘솔에 출력 (디버깅 용도)
-  console.log(post.Images);
+  // console.log(post.Images);
 
   // 이미지가 1개인 경우
   if (post.Images.length === 1) {

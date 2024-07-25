@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { MSWComponent } from "./_components/MSWComponents";
+import AuthSession from "./_components/AuthSession";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div>{children}</div>
+        <MSWComponent />
+        {/* useSesstion 을 확인하기 위한 Provider */}
+        <AuthSession>
+          <div>{children}</div>
+        </AuthSession>
       </body>
     </html>
   );

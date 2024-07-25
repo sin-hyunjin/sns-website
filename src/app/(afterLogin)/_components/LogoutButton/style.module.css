@@ -1,5 +1,5 @@
 .logOutButton {
-  width: 258px;
+  width: 66px;
   height: 66px;
   padding: 12px;
   display: flex;
@@ -9,6 +9,9 @@
   align-items: center;
   background-color: #fff;
   text-align: left;
+}
+.logOutUserName {
+  display: none;
 }
 .logOutButton:hover {
   background-color: rgba(15, 20, 25, 0.1);
@@ -22,10 +25,17 @@
   width: 40px;
   border-radius: 50%;
 }
-.logOutUserName {
-  margin: 0 12px;
-  color: black;
-}
-.logOutUserName > div:first-child {
-  font-weight: bold;
+
+@media all and (min-width: 1300px) {
+  .logOutButton {
+    width: 258px;
+  }
+
+  .logOutUserName {
+    margin: 0 12px;
+    display: block;
+  }
+  .logOutUserName > div:first-child {
+    font-weight: bold;
+  }
 }
